@@ -1,9 +1,9 @@
-ARG DRUPAL_IMAGE=drupal:8-apache
+ARG DRUPAL_IMAGE=drupal:9-apache
 FROM $DRUPAL_IMAGE
 
 LABEL com.circleci.preserve-entrypoint=true
 
-ENV DRUPAL_VERSION 8
+ENV DRUPAL_VERSION 9
 ENV APACHE_LOG_DIR /var/log/messages
 
 COPY php-overrides.ini /usr/local/etc/php/conf.d

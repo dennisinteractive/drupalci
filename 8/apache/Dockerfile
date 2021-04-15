@@ -1,4 +1,5 @@
-FROM drupal:8-apache
+ARG DRUPAL_IMAGE=drupal:8-apache
+FROM $DRUPAL_IMAGE
 
 ENV DRUPAL_VERSION 8
 ENV APACHE_LOG_DIR /var/log/apache2
@@ -23,6 +24,8 @@ RUN set -ex \
 RUN set -ex \
     && sudo -u www-data curl -L https://getcomposer.org/installer | php -d allow_url_fopen=on  -- --quiet --install-dir=/usr/bin --filename=composer \
 	&& rm composer.lock \
+	&& chown www-data:www-data . \
+	&& chown -R www-data:www-data ./vendor ./web \
 	&& sudo -u www-data composer install
 
 EXPOSE 80
