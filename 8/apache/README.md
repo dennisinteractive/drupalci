@@ -16,8 +16,14 @@ The parameters for the runtests.php script are:
 * --patches      Specifies a list of patches to be applied. [See example below](#Patches).
 * --dependencies List of test dependencies [optional] i.e. "drupal/link:* drupal/email:^1.0"
 
-### Drupal 8
-Run tests from the a released version of Captcha Keypad module
+### Drupal 9/8
+Run tests from the released version of Captcha Keypad module
+
+```bash
+docker run --name drupalci --rm dennisdigital/drupalci:9-apache \
+       --project captcha_keypad \
+       --version ^1.0.0
+```
 
 ```bash
 docker run --name drupalci --rm dennisdigital/drupalci:8-apache \

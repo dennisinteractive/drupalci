@@ -1,4 +1,5 @@
-FROM drupal:7-apache
+ARG DRUPAL_IMAGE=drupal:7-apache
+FROM $DRUPAL_IMAGE
 
 ENV DRUPAL_VERSION 7
 
@@ -20,11 +21,6 @@ RUN set -ex \
         unzip \
         git \
         sqlite3
-
-RUN set -ex \
-    && echo Applying patch to core since composer cannot do it \
-    && curl -L -o sqlite.patch https://www.drupal.org/files/issues/2019-02-21/1713332-83.patch \
-    && patch -p1 < sqlite.patch
 
 RUN set -ex \
     && curl -L -o /usr/bin/drush https://github.com/drush-ops/drush/releases/download/8.1.18/drush.phar \
